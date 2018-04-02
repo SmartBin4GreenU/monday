@@ -27,4 +27,22 @@ router.route('/bears')
             res.send(bears)
     })
 
+router.route('/bears/:id')
+    .get( (req,res) => {
+        res.send(bears[req.params.id])
+    })
+
+    .put((req,res ) =>  {
+        const id = req.params.id
+        bears[id].name = req.body.name
+        bears[id].weight = req.body.weight
+        res.send( bears)
+    })
+
+    .delete( (req,res) => {
+        const id = req.params.id
+        delete bears[id]
+        res.send(bears)
+    })
+
 app.listen(8888)
